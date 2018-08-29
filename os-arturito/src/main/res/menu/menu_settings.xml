@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/post_cell_menu_report_option"
+            android:title="Denunciar" />
+        <item
+            android:id="@+id/post_cell_menu_remove_option"
+            android:title="Remover da Lista" />
+</menu>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="BaseText.CellTitle">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">center_vertical|start</item>
+    </style>
+
+    <style name="BaseText.CellSubTitle">
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_gravity">center_vertical|start</item>
+    </style>
+
+
+    <style name="BaseText.PostTitle">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_gravity">center_vertical|start</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="BaseText.PostSubTitle">
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_gravity">center_vertical|start</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="BaseText.PostDescription">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">center_vertical|start</item>
+    </style>
+
+</resources>

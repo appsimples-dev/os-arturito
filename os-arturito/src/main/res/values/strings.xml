@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Os Hodor</string>
+    <string name="unexpected_error">An unexpected error ocurred</string>
+</resources>
