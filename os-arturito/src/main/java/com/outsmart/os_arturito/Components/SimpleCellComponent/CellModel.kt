@@ -7,6 +7,8 @@ data class CellModel(
         val secondSubtitle: String? = null,
         val buttonsType: ButtonsType?,
         val buttonListener: ((id: Int) -> Unit)?,
+        val rightButtonListener: ((id: Int) -> Unit)?,
+        val leftButtonListener: ((id: Int) -> Unit)?,
         val cellListener: ((id: Int) -> Unit)?
 )
 

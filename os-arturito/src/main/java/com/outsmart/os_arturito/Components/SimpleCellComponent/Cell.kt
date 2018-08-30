@@ -8,8 +8,7 @@ import android.widget.FrameLayout
 import com.outsmart.os_arturito.R
 import kotlinx.android.synthetic.main.component_cell.view.*
 
-class Cell @JvmOverloads constructor (
-        context: Context) {
+class Cell @JvmOverloads constructor (context: Context) {
 
     private var cellModel : CellModel? = null
     var view: View? = null
@@ -39,9 +38,24 @@ class Cell @JvmOverloads constructor (
             if(cellModel?.cellListener != null) view?.component_cell_root?.setOnClickListener({
                 cellModel?.cellListener?.invoke((cellModel?.id ?: 0))
             })
-        } else {
+
+        } else if (cellModel?.buttonsType == ButtonsType.Double) {
             view?.component_cell_left_button?.visibility = View.VISIBLE
             view?.component_cell_right_button?.visibility = View.VISIBLE
+            if (cellModel?.rightButtonListener != null && cellModel?.leftButtonListener != null) {
+                view?.component_cell_left_button?.setOnClickListener({
+                    cellModel?.leftButtonListener?.invoke(cellModel?.id ?: 0)
+                })
+                view?.component_cell_right_button?.setOnClickListener({
+                    cellModel?.rightButtonListener?.invoke(cellModel?.id ?: 0)
+                })
+            } else {
+                view?.component_cell_left_button?.visibility = View.GONE
+                view?.component_cell_right_button?.visibility = View.GONE
+            }
+            if (cellModel?.cellListener != null) view?.component_cell_root?.setOnClickListener({
+                cellModel?.cellListener?.invoke((cellModel?.id ?: 0))
+            })
         }
     }
 

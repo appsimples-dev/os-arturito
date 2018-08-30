@@ -54,5 +54,7 @@ dependencies {
 
     // No-Op version of LeakCanary for release builds: no notifications, no analysis, nothing
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibraryVersion"
+
+    compile project(':os-arturito')
 }
 

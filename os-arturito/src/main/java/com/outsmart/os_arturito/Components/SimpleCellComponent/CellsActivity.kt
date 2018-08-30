@@ -27,18 +27,22 @@ open class CellsActivity : AppCompatActivity() {
 
     private fun mockCells(): List<CellModel> {
         return listOf(
-                CellModel(id = 1, title = "cell clicable", buttonsType =  ButtonsType.Single, buttonListener = this::onButtonTap, cellListener = this::onCellTap),
-                CellModel(id = 1, title = "cell clicable", buttonsType =  ButtonsType.Double, buttonListener = this::onButtonTap, cellListener = this::onCellTap)
-//                CellModel(1,"Title, cell clickable", null,null, this::onButtonTap, this::onCellTap),
-//                CellModel(2,"Title without button", "With subtitle", null, this::onButtonTap , null),
-//                CellModel(3,"Title without subtitle, text selectable and cell clickable", null, null,this::onButtonTap, this::onCellTap),
-//                CellModel(4,"Title without button", null,null, null, null),
-//                CellModel(4,"Title without button", "With subtitle","With second subtitle", null, null)
+                CellModel(id = 1, title = "cell clickable", buttonsType =  ButtonsType.Single, buttonListener = this::onButtonTap, cellListener = this::onCellTap, leftButtonListener = null, rightButtonListener = null),
+                CellModel(id = 2, title = "cell clickable", buttonsType =  null, buttonListener = this::onButtonTap, cellListener = this::onCellTap, leftButtonListener = null, rightButtonListener = null),
+                CellModel(id = 3, title = "cell clickable", buttonsType =  ButtonsType.Double, buttonListener = null, leftButtonListener = this::onLeftButtonTap, rightButtonListener = this::onRightButtonTap,cellListener = this::onCellTap)
         )
     }
 
     private fun onButtonTap(id: Int){
         Toast.makeText(this, "onButtonTap called, id: $id", Toast.LENGTH_LONG).show()
+    }
+
+    private fun onRightButtonTap(id: Int){
+        Toast.makeText(this, "onRightButtonTap called, id: $id", Toast.LENGTH_LONG).show()
+    }
+
+    private fun onLeftButtonTap(id: Int){
+        Toast.makeText(this, "onLeftButtonTap called, id: $id", Toast.LENGTH_LONG).show()
     }
 
     private fun onCellTap(id: Int) {

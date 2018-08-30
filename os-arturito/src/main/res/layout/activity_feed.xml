@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/activity_feed_logout_btn"
+    <com.outsmart.os_arturito.Components.ListComponent.ListView
+        android:id="@+id/activity_feed_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
