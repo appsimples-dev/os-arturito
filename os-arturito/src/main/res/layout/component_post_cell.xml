@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryBackground"
+    android:orientation="vertical"
+    >
+
+    <include
+        android:id="@+id/post_cell_user_section"
+        layout="@layout/component_post_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/post_cell_description"
+        style="@style/BaseText.PostDescription"
+        android:paddingHorizontal="24dp"
+        android:text="Lorem ipsum"
+        android:textIsSelectable="true"
+        />
+
+    <TextView
+        android:id="@+id/postDate"
+        style="@style/BaseText.PostSubTitle"
+        android:layout_marginTop="4dp"
+        android:paddingHorizontal="24dp"
+        android:text="01/01/2018"/>
+
+    <douglasspgyn.com.github.doubletapview.DoubleTapView
+        android:id="@+id/post_cell_media"
+        android:layout_width="match_parent"
+        android:layout_height="344dp"
+        android:layout_marginTop="8dp"
+        app:animatedViewAnimation="@anim/bounce_in_out"
+        app:animatedViewBackground="@drawable/heart_background_view"
+        app:animatedViewBackgroundColor="@color/colorPrimary"
+        app:animatedViewMeasure="100dp"
+        app:srcCompat="@drawable/image_placeholder" />
+
+    <include
+        android:id="@+id/interactionSection"
+        layout="@layout/component_post_interaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+
+

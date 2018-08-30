@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonBase">
+        <item name="android:layout_width">110dp</item>
+        <item name="android:layout_height">36dp</item>
+    </style>
+
+    <style name="SmallButtonBase">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+    </style>
+
+    <style name="ImageBase">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="Cell">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="TitleAndSubtitleContainer">
+        <item name="android:showDividers">middle</item>
+        <item name="android:divider">@drawable/title_and_subtitle_divider</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
 </resources>
