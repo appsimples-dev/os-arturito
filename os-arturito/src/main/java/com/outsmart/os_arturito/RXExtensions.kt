@@ -40,7 +40,7 @@ fun Completable.toLiveData(viewModel: BaseViewModel): LiveData<RequestResult<Uni
                             it.message?.let { errorCode = it }
                             it.localizedMessage?.let { devMessage = it }
                             (it as? OSError)?.let {
-                                errorCode = it.type
+                                errorCode = it.code
                                 errorMessage = it.message
                                 devMessage = it.devMessage
                             }
@@ -64,7 +64,7 @@ fun Completable.updateLiveData(viewModel: BaseViewModel, liveData: MutableLiveDa
                             it.message?.let { errorCode = it }
                             it.localizedMessage?.let { devMessage = it }
                             (it as? OSError)?.let {
-                                errorCode = it.type
+                                errorCode = it.code
                                 errorMessage = it.message
                                 devMessage = it.devMessage
                             }
