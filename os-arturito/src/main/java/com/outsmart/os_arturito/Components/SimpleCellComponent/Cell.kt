@@ -25,6 +25,7 @@ class Cell @JvmOverloads constructor (context: Context) {
         this.cellModel = cellModel
         setupButtons()
         setupTexts()
+        setupLeftImage()
     }
 
     private fun setupButtons() {
@@ -74,11 +75,22 @@ class Cell @JvmOverloads constructor (context: Context) {
         else view?.component_cell_subtitle?.visibility = View.GONE
         if(!cellModel?.secondSubtitle.isNullOrEmpty()) view?.component_cell_subtitle2?.text = cellModel?.secondSubtitle
         else view?.component_cell_subtitle2?.visibility = View.GONE
-
     }
 
     fun setButtonText(buttonText: String){
         view?.component_cell_center_button?.text = buttonText
+    }
+
+    private fun setupLeftImage(){
+        view?.component_cell_image_container?.visibility = View.GONE
+        if (!cellModel?.leftImage.isNullOrEmpty()){
+            view?.component_cell_image_container?.visibility = View.VISIBLE
+            if (cellModel?.leftImageListener != null){
+                view?.component_cell_image?.setOnClickListener {
+                    cellModel?.leftImageListener?.invoke(cellModel?.id ?: 0)
+                }
+            }
+        }
     }
 
 }

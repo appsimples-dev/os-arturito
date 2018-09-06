@@ -27,9 +27,34 @@ open class CellsActivity : AppCompatActivity() {
 
     private fun mockCells(): List<CellModel> {
         return listOf(
-                CellModel(id = 1, title = "cell clickable", buttonsType =  ButtonsType.Single, buttonListener = this::onButtonTap, cellListener = this::onCellTap, leftButtonListener = null, rightButtonListener = null),
-                CellModel(id = 2, title = "cell clickable", buttonsType =  null, buttonListener = this::onButtonTap, cellListener = this::onCellTap, leftButtonListener = null, rightButtonListener = null),
-                CellModel(id = 3, title = "cell clickable", buttonsType =  ButtonsType.Double, buttonListener = null, leftButtonListener = this::onLeftButtonTap, rightButtonListener = this::onRightButtonTap,cellListener = this::onCellTap)
+                CellModel(id = 1,
+                        title = "cell clickable",
+                        subTitle = "My cell My cell My cell",
+                        leftImage = "j",
+                        buttonsType =  ButtonsType.Single,
+                        buttonListener = this::onButtonTap,
+                        cellListener = this::onCellTap,
+                        leftButtonListener = null,
+                        rightButtonListener = null,
+                        leftImageListener = this::onLeftImageTap),
+
+                CellModel(id = 2,
+                        title = "cell clickable",
+                        buttonsType =  null,
+                        buttonListener = this::onButtonTap,
+                        cellListener = this::onCellTap,
+                        leftButtonListener = null,
+                        rightButtonListener = null,
+                        leftImageListener = null),
+
+                CellModel(id = 3,
+                        title = "cell clickable",
+                        buttonsType =  ButtonsType.Double,
+                        buttonListener = null,
+                        leftButtonListener = this::onLeftButtonTap,
+                        rightButtonListener = this::onRightButtonTap,
+                        cellListener = this::onCellTap,
+                        leftImageListener = null)
         )
     }
 
@@ -49,4 +74,11 @@ open class CellsActivity : AppCompatActivity() {
         Toast.makeText(this, "onCellTap called, id: $id", Toast.LENGTH_LONG).show()
     }
 
+    private fun onLeftImageTap(id: Int){
+        Toast.makeText(this, "onProfilePictureTap called, id: $id", Toast.LENGTH_LONG).show()
+    }
+
+    private fun onTitleTap(id: Int){
+        Toast.makeText(this, "onTitleTap called, id: $id", Toast.LENGTH_LONG).show()
+    }
 }
