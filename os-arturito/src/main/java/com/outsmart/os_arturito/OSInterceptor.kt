@@ -15,7 +15,8 @@ class OSInterceptor : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
-
+        // TODO log intercepted requests
+        chain.request().url()
         val request = chain.request()
         val builder = request.newBuilder()
         builder.addHeader("x-api-key", OSProject.config?.apiKey ?: "")

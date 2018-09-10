@@ -30,13 +30,14 @@ open class CellsActivity : AppCompatActivity() {
                 CellModel(id = 1,
                         title = "cell clickable",
                         subTitle = "My cell My cell My cell",
-                        leftImage = "j",
+                        leftImage = "https://i.redditmedia.com/ElMktJSYVFgrsZD4BtSP9SLDh5MI4aVBrStTEkJW56E.jpg?fit=crop&crop=faces%2Centropy&arh=2&w=960&s=e9eb6fb0bd9eb757f448c1d82b1583ad",
                         buttonsType =  ButtonsType.Single,
                         buttonListener = this::onButtonTap,
                         cellListener = this::onCellTap,
                         leftButtonListener = null,
                         rightButtonListener = null,
-                        leftImageListener = this::onLeftImageTap),
+                        leftImageListener = this::onLeftImageTap,
+                        titleListener = this::onTitleTap),
 
                 CellModel(id = 2,
                         title = "cell clickable",
@@ -45,7 +46,8 @@ open class CellsActivity : AppCompatActivity() {
                         cellListener = this::onCellTap,
                         leftButtonListener = null,
                         rightButtonListener = null,
-                        leftImageListener = null),
+                        leftImageListener = null,
+                        titleListener = null),
 
                 CellModel(id = 3,
                         title = "cell clickable",
@@ -54,7 +56,8 @@ open class CellsActivity : AppCompatActivity() {
                         leftButtonListener = this::onLeftButtonTap,
                         rightButtonListener = this::onRightButtonTap,
                         cellListener = this::onCellTap,
-                        leftImageListener = null)
+                        leftImageListener = null,
+                        titleListener = null)
         )
     }
 

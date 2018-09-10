@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/component_cell_image"
                 style="@style/ImageBase"
-                app:srcCompat="@drawable/profile_picture_round_shape"/>
+                app:srcCompat="@drawable/profileplaceholder"/>
 
         </FrameLayout>
 
@@ -68,7 +68,7 @@
                 style="@style/SmallButtonBase"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/profile_picture_round_shape"/>
+                app:srcCompat="@drawable/negative_button_icon"/>
 
             <ImageView
                 android:id="@+id/component_cell_right_button"
@@ -76,7 +76,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_gravity="center"
                 android:visibility="gone"
-                app:srcCompat="@drawable/profile_picture_round_shape"/>
+                app:srcCompat="@drawable/positive_button_icon"/>
 
         </LinearLayout>
 

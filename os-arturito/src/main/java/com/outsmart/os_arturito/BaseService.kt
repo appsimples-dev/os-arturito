@@ -47,9 +47,11 @@ open class BaseService {
                         }, { t ->
                             if (t is HttpException) {
                                 t.printStackTrace()
+                                // TODO handle error properly
                                 it.onError(listenError(t))
                             }
                         }).collect(d)
+
             }
         }
 

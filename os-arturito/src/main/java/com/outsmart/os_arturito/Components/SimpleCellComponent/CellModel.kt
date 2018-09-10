@@ -11,7 +11,8 @@ data class CellModel(
         val rightButtonListener: ((id: Int) -> Unit)?,
         val leftButtonListener: ((id: Int) -> Unit)?,
         val cellListener: ((id: Int) -> Unit)?,
-        val leftImageListener: ((id: Int) -> Unit)?
+        val leftImageListener: ((id: Int) -> Unit)?,
+        val titleListener: ((id: Int) -> Unit)?
 )
 
 enum class ButtonsType {
