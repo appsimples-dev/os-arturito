@@ -1,8 +1,8 @@
 package com.outsmart.os_arturito.Realm
 
-import com.outsmart.os_arturito.ErrorModule.OSError
 import com.outsmart.academicatlas.OSApplication
 import com.outsmart.baseproject.Utils.Rx.RealmDisposable
+import com.outsmart.os_arturito.ErrorModule.OSError
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -21,7 +21,7 @@ class RealmManager<C : RealmModel> {
     var changeListener: RealmChangeListener<C>? = null
 
     fun observeRealmState(clazz: Class<C>): Observable<C> {
-        return Observable.create({ emitter: ObservableEmitter<C> ->
+        return Observable.create { emitter: ObservableEmitter<C> ->
             val realm: Realm = Realm.getDefaultInstance()
             val realmDisposable = RealmDisposable(realm, this::dispose)
             emitter.setDisposable(realmDisposable)
@@ -32,7 +32,7 @@ class RealmManager<C : RealmModel> {
             results?.let { results ->
                 changeListener?.let { results.addChangeListener(it) }
             }
-        }).subscribeOn(getRealmThread())
+        }.subscribeOn(getRealmThread())
                 .unsubscribeOn(getRealmThread())
     }
 
@@ -48,7 +48,7 @@ class RealmManager<C : RealmModel> {
         }
 
         fun executeTransaction(transaction: Realm.Transaction): Completable {
-            return Completable.create({ emitter ->
+            return Completable.create { emitter ->
                 val realm: Realm = Realm.getDefaultInstance()
                 realm.executeTransactionAsync(
                         transaction,
@@ -60,14 +60,13 @@ class RealmManager<C : RealmModel> {
                             realm.close()
                             it.printStackTrace()
                             emitter.onError(
-                                    OSError(
-                                            "OSRealmTransactionError",
+                                    OSError("OSRealmTransactionError",
                                             "Ocorreu um erro inesperado", // TODO internationalize this
                                             "An error ocurred while trying to execute a realm transaction in a Completable.fromRealmTransaction operation, see stackTrace for more information."
                                     ))
                         }
                 )
-            })
+            }
                     .subscribeOn(getRealmThread())
         }
     }
