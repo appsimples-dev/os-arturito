@@ -61,14 +61,17 @@
             <Button android:id="@+id/component_cell_center_button"
                 style="@style/ButtonBase"
                 android:visibility="gone"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/colorSecondary"/>
 
             <ImageView
                 android:id="@+id/component_cell_left_button"
                 style="@style/SmallButtonBase"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/negative_button_icon"/>
+                app:srcCompat="@drawable/negative_button_icon"
+                android:tint="@color/colorSecondary"/>
 
             <ImageView
                 android:id="@+id/component_cell_right_button"
@@ -76,7 +79,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_gravity="center"
                 android:visibility="gone"
-                app:srcCompat="@drawable/positive_button_icon"/>
+                app:srcCompat="@drawable/positive_button_icon"
+                android:tint="@color/colorSecondary"/>
 
         </LinearLayout>
 
