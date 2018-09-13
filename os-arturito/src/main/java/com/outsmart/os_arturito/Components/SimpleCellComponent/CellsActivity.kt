@@ -30,7 +30,7 @@ open class CellsActivity : AppCompatActivity() {
                 CellModel(id = 1,
                         title = "cell clickable",
                         subTitle = "My cell My cell My cell",
-                        leftImage = "https://i.redditmedia.com/ElMktJSYVFgrsZD4BtSP9SLDh5MI4aVBrStTEkJW56E.jpg?fit=crop&crop=faces%2Centropy&arh=2&w=960&s=e9eb6fb0bd9eb757f448c1d82b1583ad",
+                        leftImage = "http://cbnjoaopessoa.com.br/wp-content/uploads/userphoto/59.jpg",
                         buttonsType =  ButtonsType.Single,
                         buttonListener = this::onButtonTap,
                         cellListener = this::onCellTap,
