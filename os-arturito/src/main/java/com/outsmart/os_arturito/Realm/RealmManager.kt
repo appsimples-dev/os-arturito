@@ -20,11 +20,13 @@ class RealmManager<C : RealmModel> {
     var results: C? = null
     var changeListener: RealmChangeListener<C>? = null
 
-    fun observeRealmState(clazz: Class<C>): Observable<C> {
+    fun observeRealmState(clazz: Class<C>, closeInstanceOnComplete: Boolean = true): Observable<C> {
         return Observable.create { emitter: ObservableEmitter<C> ->
-            val realm: Realm = Realm.getDefaultInstance()
-            val realmDisposable = RealmDisposable(realm, this::dispose)
-            emitter.setDisposable(realmDisposable)
+            val realm = Realm.getDefaultInstance()
+            if (closeInstanceOnComplete.equals(true)) {
+                val realmDisposable = RealmDisposable(realm, this::dispose)
+                emitter.setDisposable(realmDisposable)
+            }
             results = realm.where(clazz).findFirstAsync()
             changeListener = RealmChangeListener {
                 if (it.isValid()) emitter.onNext(realm.copyFromRealm(it))
@@ -47,22 +49,26 @@ class RealmManager<C : RealmModel> {
             return OSApplication.realmScheduler
         }
 
-        fun executeTransaction(transaction: Realm.Transaction): Completable {
+        fun executeTransaction(transaction: Realm.Transaction, closeInstanceOnComplete: Boolean = true): Completable {
             return Completable.create { emitter ->
-                val realm: Realm = Realm.getDefaultInstance()
+                val realm = Realm.getDefaultInstance()
                 realm.executeTransactionAsync(
                         transaction,
                         Realm.Transaction.OnSuccess {
-                            realm.close()
+                            if (closeInstanceOnComplete) {
+                                realm.close()
+                            }
                             emitter.onComplete()
                         },
                         Realm.Transaction.OnError {
-                            realm.close()
+                            if (closeInstanceOnComplete) {
+                                realm.close()
+                            }
                             it.printStackTrace()
                             emitter.onError(
                                     OSError("OSRealmTransactionError",
                                             "Ocorreu um erro inesperado", // TODO internationalize this
-                                            "An error ocurred while trying to execute a realm transaction in a Completable.fromRealmTransaction operation, see stackTrace for more information."
+                                            "An error ocurred while trying to execute a realm transaction in a executeTransaction operation, see stackTrace for more information."
                                     ))
                         }
                 )
