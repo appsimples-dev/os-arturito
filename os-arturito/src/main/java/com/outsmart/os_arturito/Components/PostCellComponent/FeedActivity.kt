@@ -15,7 +15,7 @@ class FeedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_feed)
     }
 
-    var mapPostAppToView: (realmList: OSRealmList<PostAppModel>) -> OSList<ListItem> = { realmList: OSRealmList<PostAppModel> ->
+    var mapPostAppToView: (realmList: OSRealmList<OSArturitoPostAppModel>) -> OSList<ListItem> = { realmList: OSRealmList<OSArturitoPostAppModel> ->
         OSList.fromOSRealmList(realmList, { i, postApp ->
             PostComponent(
                     i,

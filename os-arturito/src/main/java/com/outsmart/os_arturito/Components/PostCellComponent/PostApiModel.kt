@@ -4,7 +4,7 @@ package com.outsmart.os_arturito.PostCell
 import com.outsmart.os_arturito.BaseApiModel
 import java.util.*
 
-class PostApiModel: BaseApiModel<PostAppModel>() {
+class PostApiModel: BaseApiModel<OSArturitoPostAppModel>() {
 
     var id: String = ""
     var posterId: String = ""
@@ -19,9 +19,9 @@ class PostApiModel: BaseApiModel<PostAppModel>() {
     var title: String = ""
     var body: String = ""
 
-    override fun mapToAppModel(): PostAppModel {
+    override fun mapToAppModel(): OSArturitoPostAppModel {
         val postApiModel = this
-        val appModel = PostAppModel()
+        val appModel = OSArturitoPostAppModel()
         appModel.posterName = postApiModel.userName
         appModel.postImageUrl = "https://i.redditmedia.com/ElMktJSYVFgrsZD4BtSP9SLDh5MI4aVBrStTEkJW56E.jpg?fit=crop&crop=faces%2Centropy&arh=2&w=960&s=e9eb6fb0bd9eb757f448c1d82b1583ad"
         appModel.posterId = postApiModel.posterId

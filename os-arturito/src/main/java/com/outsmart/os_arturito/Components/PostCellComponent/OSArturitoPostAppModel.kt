@@ -4,7 +4,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
-open class PostAppModel : RealmObject() {
+open class OSArturitoPostAppModel : RealmObject() {
     @PrimaryKey
     var postId: String = ""
 

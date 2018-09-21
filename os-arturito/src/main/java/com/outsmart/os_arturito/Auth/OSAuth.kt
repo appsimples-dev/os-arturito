@@ -68,10 +68,6 @@ object OSAuth {
             delete(OSAuthConstants.SP_CREDENTIALS)
             delete(OSAuthConstants.SP_UID)
         }
-//        return Completable.complete()
-        return RealmManager.executeTransaction(Realm.Transaction {
-            it.removeAllChangeListeners()
-//            it.deleteAll()
-        })
+        return Completable.complete()
     }
 }

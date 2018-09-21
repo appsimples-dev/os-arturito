@@ -6,7 +6,7 @@ package com.outsmart.os_arturito.ErrorModule
 class OSError(): Exception() {
     var code: String = OSErrorTypes.OSBackendUnkownErrorType
     override var message: String = ""
-    var devMessage: String = "Backend did not return devMessage"
+    var devMessage: Any = "Backend did not return devMessage"
     var httpCode: Int? = null
 
     constructor(

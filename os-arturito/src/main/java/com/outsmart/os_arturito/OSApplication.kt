@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.HandlerThread
 import android.util.DisplayMetrics
 import com.outsmart.academicatlas.Utils.Rx.DisposableManager
+import com.outsmart.os_arturito.Realm.OSArturitoModule
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.realm.Realm
@@ -21,11 +22,6 @@ open class OSApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Realm.init(this)
-        realmConfig = RealmConfiguration.Builder()
-                .deleteRealmIfMigrationNeeded()
-                .build()
-        Realm.setDefaultConfiguration(realmConfig)
 
         realmIo.start()
         OSApplication.realmScheduler = AndroidSchedulers.from(realmIo.looper)

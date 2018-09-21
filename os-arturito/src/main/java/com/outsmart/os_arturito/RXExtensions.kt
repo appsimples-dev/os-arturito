@@ -42,7 +42,7 @@ fun Completable.toLiveData(viewModel: BaseViewModel): LiveData<RequestResult<Uni
                             (it as? OSError)?.let {
                                 errorCode = it.code
                                 errorMessage = it.message
-                                devMessage = it.devMessage
+                                devMessage = it.devMessage.toString()
                             }
 
 
@@ -66,7 +66,7 @@ fun Completable.updateLiveData(viewModel: BaseViewModel, liveData: MutableLiveDa
                             (it as? OSError)?.let {
                                 errorCode = it.code
                                 errorMessage = it.message
-                                devMessage = it.devMessage
+                                devMessage = it.devMessage.toString()
                             }
                         }
 
