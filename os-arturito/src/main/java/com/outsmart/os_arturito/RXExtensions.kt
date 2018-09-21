@@ -8,6 +8,7 @@ import com.outsmart.os_arturito.Models.Status
 import com.outsmart.academicatlas.Utils.Rx.DisposableManager
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.realm.Realm
 
@@ -24,6 +25,15 @@ fun <T> Observable<T>.observe(consumer: (t: T) -> Unit, viewModel: BaseViewModel
 fun Completable.observe(viewModel: BaseViewModel, onComplete: (() -> Unit)? = null, onError: ((error: Throwable) -> Unit)? = null): Disposable {
     val disposable = this.subscribe(
             { onComplete?.invoke() },
+            { onError?.invoke(it) }
+    )
+    viewModel.collectDisposable(disposable)
+    return disposable
+}
+
+fun <T> Single<T>.observe(viewModel: BaseViewModel, onComplete: ((r: T) -> Unit)? = null, onError: ((error: Throwable) -> Unit)? = null): Disposable {
+    val disposable = this.subscribe(
+            { onComplete?.invoke(it) },
             { onError?.invoke(it) }
     )
     viewModel.collectDisposable(disposable)
@@ -67,6 +77,28 @@ fun Completable.updateLiveData(viewModel: BaseViewModel, liveData: MutableLiveDa
                                 errorCode = it.code
                                 errorMessage = it.message
                                 devMessage = it.devMessage.toString()
+                            }
+                        }
+
+                    }
+            )
+    viewModel.collectDisposable(disposable)
+}
+
+fun <T> Single<T>.updateLiveData(viewModel: BaseViewModel, liveData: MutableLiveData<RequestResult<T>>) {
+    val disposable = this.observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+            .subscribe(
+                    {
+                        liveData.value = RequestResult(Status.Success, it)
+                    },
+                    {
+                        liveData.value = RequestResult(Status.Failure, null).apply {
+                            it.message?.let { errorCode = it }
+                            it.localizedMessage?.let { devMessage = it }
+                            (it as? OSError)?.let {
+                                errorCode = it.code
+                                errorMessage = it.message
+                                devMessage = it.devMessage
                             }
                         }
 
