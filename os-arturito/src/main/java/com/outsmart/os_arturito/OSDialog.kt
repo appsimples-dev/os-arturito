@@ -8,6 +8,7 @@ import android.content.DialogInterface
 /**
  * Created by Mutti on 28/09/16.
  */
+
 open class OSDialog {
 
     companion object {
@@ -17,9 +18,8 @@ open class OSDialog {
 
         }
 
-        fun showAlertDialog(context: Context, message: String, button: String = "Ok", onDismiss: (() -> Unit)? = null) {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-            dialog = builder.setMessage(message)
+        fun showAlertDialog(context: Context, message: String, button: String = "Ok", onDismiss: (() -> Unit)? = null): AlertDialog {
+            return AlertDialog.Builder(context).setMessage(message)
                     .setNeutralButton(button, { dialogInterface, i -> dialogInterface.dismiss() })
                     .setOnDismissListener { onDismiss?.invoke() }
                     .show()
