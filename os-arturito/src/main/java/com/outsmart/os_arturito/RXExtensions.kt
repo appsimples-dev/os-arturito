@@ -98,7 +98,7 @@ fun <T> Single<T>.updateLiveData(viewModel: BaseViewModel, liveData: MutableLive
                             (it as? OSError)?.let {
                                 errorCode = it.code
                                 errorMessage = it.message
-                                devMessage = it.devMessage
+                                devMessage = it.devMessage.toString()
                             }
                         }
 
@@ -108,7 +108,7 @@ fun <T> Single<T>.updateLiveData(viewModel: BaseViewModel, liveData: MutableLive
 }
 
 fun completableFromRealmTransaction(realm: Realm, transaction: Realm.Transaction): Completable {
-    return Completable.create({ emitter ->
+    return Completable.create { emitter ->
         realm.executeTransactionAsync(
                 transaction,
                 Realm.Transaction.OnSuccess { emitter.onComplete() },
@@ -122,7 +122,7 @@ fun completableFromRealmTransaction(realm: Realm, transaction: Realm.Transaction
                             ))
                 }
         )
-    }).closeRealmOnDispose(realm)
+    }.closeRealmOnDispose(realm)
 }
 
 fun <T> Observable<T>.updateLiveData(liveData: MutableLiveData<T>, viewModel: BaseViewModel) {
@@ -134,9 +134,9 @@ fun Disposable.collect(manager: DisposableManager) {
 }
 
 fun Completable.closeRealmOnDispose(realm: Realm): Completable {
-    this.doOnDispose({
+    this.doOnDispose {
         realm.close()
         realm.cancelTransaction()
-    })
+    }
     return this
 }
