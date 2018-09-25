@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/os-arturito.iml" filepath="$PROJECT_DIR$/os-arturito.iml" />
+      <module fileurl="file://$PROJECT_DIR$/os-arturito.iml" filepath="$PROJECT_DIR$/os-arturito.iml" />
+      <module fileurl="file://$PROJECT_DIR$/os-arturito/os-arturito-os-arturito.iml" filepath="$PROJECT_DIR$/os-arturito/os-arturito-os-arturito.iml" />
       <module fileurl="file://$PROJECT_DIR$/os-arturito/os-arturito-os-arturito.iml" filepath="$PROJECT_DIR$/os-arturito/os-arturito-os-arturito.iml" />
     </modules>
   </component>

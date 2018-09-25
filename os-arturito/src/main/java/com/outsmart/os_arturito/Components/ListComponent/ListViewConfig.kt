@@ -9,5 +9,6 @@ class ListViewConfig(
         val liveDataset: LiveData<OSList<ListItem>>,
         val layout: Int,
         val isRefreshable: Boolean = true,
-        val onRequest: (pageKey: String?) -> Unit = {}
+        val onRequest: (pageKey: String?) -> Unit = {},
+        val adapterListener: GenericAdapterListener
 )

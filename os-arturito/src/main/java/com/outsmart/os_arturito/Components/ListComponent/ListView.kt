@@ -23,7 +23,7 @@ class ListView @JvmOverloads constructor(
 
     private var recyclerView: RecyclerView
     private var refreshLayout: SwipeRefreshLayout
-
+    private var listener: GenericAdapterListener? = null
     private var onRequest: (pageKey: String?) -> Unit = {}
     private var layout: Int? = null
 
@@ -31,9 +31,11 @@ class ListView @JvmOverloads constructor(
         set(value) {
             field = value
             layout?.let {
-                recyclerView.adapter = GenericAdapter(
-                        it, null
+                val adapter = GenericAdapter(
+                    it, null
                 )
+                adapter.setAdapterListener(listener)
+                recyclerView.adapter = adapter
                 field?.observe(context as LifecycleOwner, Observer {
                     it?.let {
                         (recyclerView.adapter as GenericAdapter).setData(it.items)
@@ -53,11 +55,10 @@ class ListView @JvmOverloads constructor(
         this.layout = config.layout
         this.onRequest = config.onRequest
         this.recyclerView.layoutManager = LinearLayoutManager(context)
+        this.listener = config.adapterListener
         this.liveDataset = config.liveDataset
-
         if (config.isRefreshable) {
             refreshLayout.setOnRefreshListener({ onRequest(null) })
         }
     }
-
 }

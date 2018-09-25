@@ -1,6 +1,7 @@
 package com.outsmart.os_arturito.Components.ListComponent
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +16,15 @@ class GenericAdapter(
         private var data: List<ListItem>?
         ) : RecyclerView.Adapter<GenericViewHolder>() {
 
+    var listener: GenericAdapterListener? = null
+
     public fun setData(data: List<ListItem>) {
         this.data = data
         notifyDataSetChanged()
+    }
+
+    public fun setAdapterListener(listener: GenericAdapterListener?) {
+        this.listener = listener
     }
 
     // Create new views (invoked by the layout manager)
@@ -32,6 +39,11 @@ class GenericAdapter(
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: GenericViewHolder, position: Int) {
         data?.get(position)?.bindView(holder.view)
+        Log.d("Generic Adapter:", "Bind" )
+        if (data?.size?.minus(1) == position) {
+            this.listener?.paginate()
+            Log.d("Generic Adapter:", "Last element")
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
