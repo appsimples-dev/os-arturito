@@ -63,7 +63,7 @@ class ListView @JvmOverloads constructor(
         this.onRequest = config.onRequest
         this.recyclerView.layoutManager = LinearLayoutManager(context)
         this.liveDataset = config.liveDataset
-        genericAdapter = GenericAdapter(config.layout, null)
+        this.genericAdapter = GenericAdapter(config.layout, null)
         setupPagination()
         if (config.isRefreshable) {
             refreshLayout.setOnRefreshListener { onRequest(null) }
