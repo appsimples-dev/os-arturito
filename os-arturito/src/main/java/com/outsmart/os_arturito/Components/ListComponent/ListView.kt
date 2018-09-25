@@ -48,11 +48,9 @@ class ListView @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.component_list_view, this, true)
         this.recyclerView = component_list_view_recycler
         this.refreshLayout = component_list_view_refresh
-        setupPagination()
     }
 
     fun setupPagination() {
-        genericAdapter = layout?.let { GenericAdapter(it, null) }
         genericAdapter?.setUpOnBottomReachedListener(object : OnBottonReachedListener {
             override fun onBottomReached(position: Int) {
                 onRequest.invoke(pageKey)
@@ -66,7 +64,8 @@ class ListView @JvmOverloads constructor(
         this.onRequest = config.onRequest
         this.recyclerView.layoutManager = LinearLayoutManager(context)
         this.liveDataset = config.liveDataset
-
+        genericAdapter = GenericAdapter(config.layout, null)
+        setupPagination()
         if (config.isRefreshable) {
             refreshLayout.setOnRefreshListener { onRequest(null) }
         }
