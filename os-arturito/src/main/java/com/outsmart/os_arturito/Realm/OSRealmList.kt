@@ -10,7 +10,7 @@ interface OSRealmList<T: RealmObject> {
     var pageKey: String?
     var items: RealmList<T>
     var refreshable: Boolean
-    var hasMoreItems: Boolean
+    var hasMore: Boolean
     var isLoading: Boolean
 
     fun getList(): List<T> {

@@ -10,7 +10,7 @@ class OSList<T: ListItem>(
         var pageKey: String? = null,
         var items: List<T> = listOf(),
         var refreshable: Boolean = false,
-        var hasMoreItems: Boolean = false,
+        var hasMore: Boolean = false,
         var isLoading: Boolean = false
 ) {
     companion object {
@@ -19,7 +19,7 @@ class OSList<T: ListItem>(
                     list.pageKey,
                     list.items.mapIndexed(mapper),
                     list.refreshable,
-                    list.hasMoreItems,
+                    list.hasMore,
                     list.isLoading
             )
         }

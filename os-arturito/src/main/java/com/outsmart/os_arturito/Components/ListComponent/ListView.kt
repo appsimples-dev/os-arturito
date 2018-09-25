@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.outsmart.os_arturito.R
@@ -23,7 +24,8 @@ class ListView @JvmOverloads constructor(
 
     private var recyclerView: RecyclerView
     private var refreshLayout: SwipeRefreshLayout
-
+    private var genericAdapter: GenericAdapter? = null
+    private var pageKey: String = ""
     private var onRequest: (pageKey: String?) -> Unit = {}
     private var layout: Int? = null
 
@@ -31,13 +33,12 @@ class ListView @JvmOverloads constructor(
         set(value) {
             field = value
             layout?.let {
-                recyclerView.adapter = GenericAdapter(
-                        it, null
-                )
+                recyclerView.adapter = genericAdapter
                 field?.observe(context as LifecycleOwner, Observer {
                     it?.let {
                         (recyclerView.adapter as GenericAdapter).setData(it.items)
                         refreshLayout.isRefreshing = false
+                        this.pageKey = it.pageKey ?: ""
                     }
                 })
             }
@@ -47,7 +48,18 @@ class ListView @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.component_list_view, this, true)
         this.recyclerView = component_list_view_recycler
         this.refreshLayout = component_list_view_refresh
+        setupPagination()
     }
+
+    fun setupPagination() {
+        genericAdapter = layout?.let { GenericAdapter(it, null) }
+        genericAdapter?.setUpOnBottomReachedListener(object : OnBottonReachedListener {
+            override fun onBottomReached(position: Int) {
+                onRequest.invoke(pageKey)
+            }
+        })
+    }
+
 
     fun config(config: ListViewConfig) {
         this.layout = config.layout
@@ -56,7 +68,7 @@ class ListView @JvmOverloads constructor(
         this.liveDataset = config.liveDataset
 
         if (config.isRefreshable) {
-            refreshLayout.setOnRefreshListener({ onRequest(null) })
+            refreshLayout.setOnRefreshListener { onRequest(null) }
         }
     }
 
