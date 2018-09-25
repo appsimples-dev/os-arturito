@@ -20,7 +20,7 @@ open class OSDialog {
 
         fun showAlertDialog(context: Context, message: String, button: String = "Ok", onDismiss: (() -> Unit)? = null): AlertDialog {
             return AlertDialog.Builder(context).setMessage(message)
-                    .setNeutralButton(button, { dialogInterface, i -> dialogInterface.dismiss() })
+                    .setNeutralButton(button) { dialogInterface, _ -> dialogInterface.dismiss() }
                     .setOnDismissListener { onDismiss?.invoke() }
                     .show()
         }

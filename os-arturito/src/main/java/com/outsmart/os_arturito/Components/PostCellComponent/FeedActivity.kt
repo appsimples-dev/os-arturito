@@ -13,10 +13,11 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+
     }
 
     var mapPostAppToView: (realmList: OSRealmList<OSArturitoPostAppModel>) -> OSList<ListItem> = { realmList: OSRealmList<OSArturitoPostAppModel> ->
-        OSList.fromOSRealmList(realmList, { i, postApp ->
+        OSList.fromOSRealmList(realmList) { i, postApp ->
             PostComponent(
                     i,
                     postApp.posterName,
@@ -29,7 +30,7 @@ class FeedActivity : AppCompatActivity() {
                             text = arrayOf(postApp.likeCounter.toString(), postApp.commentCounter.toString(), null, "Novo!", null),
                             isSelected = arrayOf(postApp.likedByMe, false, false, false, false))
             )
-        })
+        }
     }
 
     private fun interactionButtons(text: Array<String?>, isSelected: Array<Boolean>): List<InteractionButtonModel> {
