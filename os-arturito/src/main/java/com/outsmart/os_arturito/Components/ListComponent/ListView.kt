@@ -49,10 +49,9 @@ class ListView @JvmOverloads constructor(
         this.recyclerView = component_list_view_recycler
         this.refreshLayout = component_list_view_refresh
     }
-
     fun setupPagination() {
         genericAdapter?.setUpOnBottomReachedListener(object : OnBottonReachedListener {
-            override fun onBottomReached(position: Int) {
+            override fun onBottomReached() {
                 onRequest.invoke(pageKey)
             }
         })

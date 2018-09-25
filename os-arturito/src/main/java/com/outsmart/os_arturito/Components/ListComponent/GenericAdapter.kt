@@ -36,7 +36,7 @@ class GenericAdapter(
     override fun onBindViewHolder(holder: GenericViewHolder, position: Int) {
         data?.get(position)?.bindView(holder.view)
         if (position == data?.size?.minus(1) ?: 0) {
-            onBottomReachedListener?.onBottomReached(position)
+            onBottomReachedListener?.onBottomReached()
         }
     }
 

@@ -16,7 +16,7 @@ abstract class OSListApiModel<out ListAppModel, ItemApiModel : RealmObject, out 
         with(mapToAppOSList()) {
             items = realmList
             pageKey = pageKey
-            hasMoreItems = hasMore
+            hasMore = hasMore
             return this
         }
     }
