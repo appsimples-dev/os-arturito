@@ -21,6 +21,14 @@ allprojects {
         google()
         jcenter()
     }
+    configurations {
+        all {
+            resolutionStrategy {
+                force "android.arch.lifecycle:livedata-core:1.1.1"
+                force "android.arch.lifecycle:runtime:1.1.1"
+            }
+        }
+    }
 }
 
 task clean(type: Delete) {
