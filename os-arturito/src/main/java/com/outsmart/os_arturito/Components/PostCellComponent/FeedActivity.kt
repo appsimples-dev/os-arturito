@@ -18,7 +18,7 @@ class FeedActivity : AppCompatActivity() {
     var mapPostAppToView: (realmList: OSRealmList<OSArturitoPostAppModel>) -> OSList<ListItem> = { realmList: OSRealmList<OSArturitoPostAppModel> ->
         OSList.fromOSRealmList(realmList, { i, postApp ->
             PostComponent(
-                    i,
+                    i.toString(),
                     postApp.posterName,
                     postApp.body,
                     postApp.date,
@@ -86,27 +86,27 @@ class FeedActivity : AppCompatActivity() {
                 })
     }
 
-    private fun onPressButton0(id: Int) {
+    private fun onPressButton0(id: Any) {
         //TODO: implement
         Toast.makeText(this, "onPressButton0 called, id: $id", Toast.LENGTH_LONG).show()
     }
 
-    private fun onPressButton1(id: Int) {
+    private fun onPressButton1(id: Any) {
         //TODO: implement
         Toast.makeText(this, "onPressButton1 called, id: $id", Toast.LENGTH_LONG).show()
     }
 
-    private fun onPressButton2(id: Int) {
+    private fun onPressButton2(id: Any) {
         //TODO: implement
         Toast.makeText(this, "onPressButton2 called, id: $id", Toast.LENGTH_LONG).show()
     }
 
-    private fun onPressButton3(id: Int) {
+    private fun onPressButton3(id: Any) {
         //TODO: implement
         Toast.makeText(this, "onPressButton3 called, id: $id", Toast.LENGTH_LONG).show()
     }
 
-    private fun onPressButton4(id: Int) {
+    private fun onPressButton4(id: Any) {
         //TODO: implement
         Toast.makeText(this, "onPressButton4 called, id: $id", Toast.LENGTH_LONG).show()
     }

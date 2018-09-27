@@ -12,10 +12,10 @@ import android.view.ViewGroup
 
 
 class GenericAdapter(
-        private val layout: Int,
-        private var data: List<ListItem>?
+        private val layout: Int
         ) : RecyclerView.Adapter<GenericViewHolder>() {
 
+    private var data: List<ListItem>? = null
     var listener: GenericAdapterListener? = null
 
     public fun setData(data: List<ListItem>) {

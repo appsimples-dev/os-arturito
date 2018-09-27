@@ -2,7 +2,7 @@ package com.outsmart.os_arturito.PostCell
 
 data class InteractionButtonModel (
         val buttonPosition: Int,
-        var buttonOnClickListener: ((id: Int) -> Unit)?,
+        var buttonOnClickListener: ((id: Any) -> Unit)?,
         var buttonIsSelected: Boolean = false
 ){
     var buttonText: String? = ""

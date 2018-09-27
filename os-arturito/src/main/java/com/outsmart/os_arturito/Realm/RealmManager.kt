@@ -10,6 +10,7 @@ import io.reactivex.Scheduler
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmModel
+import io.realm.RealmResults
 import io.realm.kotlin.addChangeListener
 import io.realm.kotlin.isValid
 
@@ -17,7 +18,7 @@ import io.realm.kotlin.isValid
  * Created by rudieros on 23/08/18.
  */
 class RealmManager<C : RealmModel> {
-    var results: C? = null
+    var results: RealmResults<C>? = null
     var changeListener: RealmChangeListener<C>? = null
 
     fun observeRealmState(clazz: Class<C>, closeInstanceOnComplete: Boolean = true): Observable<C> {
@@ -27,12 +28,16 @@ class RealmManager<C : RealmModel> {
                 val realmDisposable = RealmDisposable(realm, this::dispose)
                 emitter.setDisposable(realmDisposable)
             }
-            results = realm.where(clazz).findFirstAsync()
+            results = realm.where(clazz).findAllAsync()
             changeListener = RealmChangeListener {
                 if (it.isValid()) emitter.onNext(realm.copyFromRealm(it))
             }
             results?.let { results ->
-                changeListener?.let { results.addChangeListener(it) }
+                changeListener?.let { results.addChangeListener(RealmChangeListener {
+                    if (it.isValid && it.isNotEmpty()) {
+                        it[0]?.let { emitter.onNext(realm.copyFromRealm(it)) }
+                    }
+                })}
             }
         }.subscribeOn(getRealmThread())
                 .unsubscribeOn(getRealmThread())

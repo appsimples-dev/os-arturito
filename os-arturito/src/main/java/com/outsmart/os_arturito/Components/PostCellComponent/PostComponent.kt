@@ -21,7 +21,7 @@ import java.util.*
 typealias PostComponentAction = (component: PostComponent) -> Unit
 
 open class PostComponent(
-        val id: Int,
+        override val id: String,
         var name: String = "",
         var description: String = "",
         var date: Date? = null,
@@ -29,11 +29,11 @@ open class PostComponent(
         var profilePicture: String? = "",
         var media: String? = "",
         var interactionButtonsList: List<InteractionButtonModel>? = null,
-        var mediaOnClickListener: ((id: Int) -> Unit)? = null,
-        var reportPostOnClickListener: ((id: Int) -> Unit)? = null,
-        var removePostOnClickListener: ((id: Int) -> Unit)? = null,
-        var profilePictureOnClickListener: ((id: Int) -> Unit)? = null,
-        var userNameOnClickListener: ((id: Int) -> Unit)? = null
+        var mediaOnClickListener: ((id: Any) -> Unit)? = null,
+        var reportPostOnClickListener: ((id: Any) -> Unit)? = null,
+        var removePostOnClickListener: ((id: Any) -> Unit)? = null,
+        var profilePictureOnClickListener: ((id: Any) -> Unit)? = null,
+        var userNameOnClickListener: ((id: Any) -> Unit)? = null
 ): ListItem() {
 
     companion object {
