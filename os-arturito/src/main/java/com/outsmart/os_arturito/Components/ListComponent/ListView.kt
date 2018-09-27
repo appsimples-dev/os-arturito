@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -54,7 +55,7 @@ class ListView @JvmOverloads constructor(
     fun config(config: ListViewConfig) {
         this.layout = config.layout
         this.onRequest = config.onRequest
-        this.recyclerView.layoutManager = LinearLayoutManager(context)
+        this.recyclerView.layoutManager = config.layoutManager
         this.listener = config.adapterListener
         this.liveDataset = config.liveDataset
         if (config.isRefreshable) {
