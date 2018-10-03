@@ -1,15 +1,15 @@
 package com.outsmart.os_arturito.Auth
 
-import com.outsmart.os_arturito.Realm.RealmManager
+import com.amazonaws.auth.AWSCredentials
+import com.amazonaws.auth.AWSCredentialsProvider
 import com.outsmart.os_arturito.SPManager
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.realm.Realm
 
 /**
  * Created by appsimples on 8/21/18.
  */
-object OSAuth {
+object OSAuth : AWSCredentialsProvider {
     var token: String? = null
         private set
         get() {
@@ -20,10 +20,8 @@ object OSAuth {
         get() {
             return field ?: SPManager.read(OSAuthConstants.SP_UID)
         }
-    private var credentials: String? = null
-    private var accessKey: String? = null
-    private var secretKey: String? = null
-    private var sessionToken: String? = null
+    var credentials: OSCredentials? = null
+
 
     fun cacheAuth(authResponse: OSAuthorizationResponse?) {
         authResponse?.let {
@@ -47,15 +45,15 @@ object OSAuth {
         SPManager.write(OSAuthConstants.SP_TOKEN, token)
     }
 
-    private fun cacheCredentials(credentials: String) {
+    private fun cacheCredentials(credentials: OSCredentials) {
         this.credentials = credentials
         // TODO read credentials token to get actual credential keys
-        SPManager.write(OSAuthConstants.SP_CREDENTIALS, credentials)
+//        SPManager.write(OSAuthConstants.SP_CREDENTIALS, credentials)
     }
 
     fun autoLogin(): Observable<AuthResult> {
         val token = this.token
-        if(!token.isNullOrEmpty()){
+        if (!token.isNullOrEmpty()) {
             return Observable.just(AuthResult(true))
 
         }
@@ -69,5 +67,12 @@ object OSAuth {
             delete(OSAuthConstants.SP_UID)
         }
         return Completable.complete()
+    }
+
+    override fun getCredentials(): AWSCredentials? {
+        return this.credentials
+    }
+
+    override fun refresh() {
     }
 }
