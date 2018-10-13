@@ -20,15 +20,6 @@ class GenericPagedAdapter(
     private var data: List<ListItem>? = null
     var listener: GenericAdapterListener? = null
 
-    public fun setData(data: List<ListItem>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
-
-    public fun setAdapterListener(listener: GenericAdapterListener?) {
-        this.listener = listener
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(layout, parent, false)
